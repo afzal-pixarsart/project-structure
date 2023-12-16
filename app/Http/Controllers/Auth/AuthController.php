@@ -31,27 +31,24 @@ class AuthController extends Controller
 
     public function Registration(Register $request)
     {
-        // try {
-        //     DB::beginTransaction();
+        try {
+            DB::beginTransaction();
             $user = $this->authRepository->register($request);
-            if ($user) {
-                DB::commit();
-                return redirect()->route('dashboard');
-            }
-        // } catch (\Exception $e) {
-        //     DB::rollBack(); 
-        //     return redirect()->back()->with('error', $e->getMessage());
-        // }
+            DB::commit();
+            return redirect()->back()->with('success','Register Successfully');
+        } catch (\Exception $e) {
+            DB::rollBack(); 
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 
     public function Login(Login $request)
     {
         $user = $this->authRepository->login($request);
-        if($user)
+        if(auth()->user())
         {
             return redirect()->route('dashboard')->withSuccess('You have Successfully loggedin');
-        } 
-        if(!$user) {
+        }else{
             return redirect()->back()->with('error', 'Invalid Credentials');
         }
     }

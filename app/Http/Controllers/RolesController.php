@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\Interfaces\RolesRepositoryInterface;
+use Illuminate\Support\Facades\DB;
 
 class RolesController extends Controller
 {
@@ -21,8 +22,18 @@ class RolesController extends Controller
 
     public function store(Request $request)
     {
-        $role = $this->rolesRepository->store($request);
-        return redirect()->route('list-roles')->withSuccess('Record Successfully Created');;
+        $validate = $request->validate([
+            'name' =>'required',
+        ]);
+        try {
+            DB::beginTransaction();
+            $role = $this->rolesRepository->store($request);
+            DB::commit();
+            return redirect()->route('list-roles')->withSuccess('Record Successfully Created');
+        } catch (\Exception $e) {
+            DB::rollBack(); 
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 
     public function list()

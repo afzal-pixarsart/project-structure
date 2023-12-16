@@ -22,13 +22,7 @@ class AuthRepository implements AuthRepositoryInterface
     public function login(Login $request)
     {
         $validator = $request->validated();
-        $user = Auth::attempt($validator);
-        return $user;
-        // if (Auth::attempt($validator)) {
-        //     return redirect()->intended('dashboard')->withSuccess('You have Successfully loggedin');
-        // }
-  
-        // return redirect("login")->withSuccess('Oppes! You have entered invalid credentials');
+        return Auth::attempt($validator);
     }
 
     public function logout()

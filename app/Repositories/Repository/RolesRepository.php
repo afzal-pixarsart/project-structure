@@ -11,10 +11,7 @@ class RolesRepository implements RolesRepositoryInterface
 {
     public function store(Request $request)
     {
-        $validator = $request->validate([
-            'name' =>'required',
-        ]);
-        $role = Role::create($validator);
+        $role = Role::create($request->all());
         return $role;
     }
 
@@ -26,7 +23,7 @@ class RolesRepository implements RolesRepositoryInterface
 
     public function edit(Request $request)
     {
-        $role = Role::where('id', $request->id)->first();
+        $role = Role::find($request->id);
         return $role;
     }
 
