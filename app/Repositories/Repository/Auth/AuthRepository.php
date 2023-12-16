@@ -7,7 +7,6 @@ use App\Models\User;
 use App\Http\Requests\Login;
 use App\Http\Requests\Register;
 use Illuminate\Support\Facades\Auth;
-use App\Repositories\Repository\BaseRepository;
 use App\Repositories\Interfaces\Auth\AuthRepositoryInterface;
 
 class AuthRepository implements AuthRepositoryInterface
