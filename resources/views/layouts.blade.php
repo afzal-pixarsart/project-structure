@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Laravel - ItSolutionStuff.com</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
     <style type="text/css">
         @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
   
@@ -47,13 +52,61 @@
 </head>
 <body>
     
-<nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
+<!-- <nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
     <div class="container">
-        <a class="navbar-brand" href="#">Laravel</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-   
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            @auth
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('create-roles') }}">Create Role</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Create Permission</a>
+                    </li>
+                </ul>
+            @endauth
+        </div>
+    </div>
+</div> -->
+
+    <nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
+        <div class="container">
+            @auth
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Roles
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('create-roles') }}">Create</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('list-roles') }}">List</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Permissions
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Create</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">List</a>
+                            </li>
+                        </ul>
+                     </li>
+                </ul>
+            </div>
+            @endauth
+        </div>
+
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 @guest

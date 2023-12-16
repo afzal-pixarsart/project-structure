@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\RolesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,15 @@ Route::group(['middleware'=>'auth'], function(){
 
     Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard'); 
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::prefix('roles')->group(function () {
+        Route::get('create', [RolesController::class, 'create'])->name('create-roles');
+        Route::post('store', [RolesController::class, 'store'])->name('store-roles');
+        Route::get('list', [RolesController::class, 'list'])->name('list-roles');
+        Route::get('edit/{id}', [RolesController::class, 'edit'])->name('edit-roles');
+        Route::post('update/{id}', [RolesController::class, 'update'])->name('update-roles');
+        Route::get('delete/{id}', [RolesController::class, 'delete'])->name('delete-roles');
+    });
 });
 
 Route::get('login', [AuthController::class, 'loginView'])->name('login');
