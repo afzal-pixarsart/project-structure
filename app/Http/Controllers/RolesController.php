@@ -22,12 +22,12 @@ class RolesController extends Controller
 
     public function store(Request $request)
     {
-        $validate = $request->validate([
+        $request->validate([
             'name' =>'required',
         ]);
         try {
             DB::beginTransaction();
-            $role = $this->rolesRepository->store($request);
+            $this->rolesRepository->store($request);
             DB::commit();
             return redirect()->route('list-roles')->withSuccess('Record Successfully Created');
         } catch (\Exception $e) {
@@ -50,13 +50,23 @@ class RolesController extends Controller
 
     public function update(Request $request)
     {
-        $role = $this->rolesRepository->update($request);
-        return redirect()->route('list-roles')->withSuccess('Record Successfully Updated');
+        $request->validate([
+            'name' =>'required',
+        ]);
+        try {
+            DB::beginTransaction();
+            $this->rolesRepository->update($request);
+            DB::commit();
+            return redirect()->route('list-roles')->withSuccess('Record Successfully Updated');
+        } catch (\Exception $e) {
+            DB::rollBack(); 
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 
     public function delete(Request $request)
     {
-        $role = $this->rolesRepository->delete($request);
+        $this->rolesRepository->delete($request);
         return back();
     }
 }
