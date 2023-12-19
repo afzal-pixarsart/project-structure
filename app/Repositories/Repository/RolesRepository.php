@@ -12,6 +12,7 @@ class RolesRepository implements RolesRepositoryInterface
     public function store(Request $request)
     {
         $role = Role::create($request->all());
+       
         return $role;
     }
 

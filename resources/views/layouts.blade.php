@@ -90,14 +90,14 @@
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Permissions
+                            Users
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li class="nav-item">
-                                <a class="nav-link" href="">Create</a>
+                                <a class="nav-link" href="{{ route('create-user') }}">Create</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="">List</a>
+                                <a class="nav-link" href="{{ route('list-user') }}">List</a>
                             </li>
                         </ul>
                      </li>

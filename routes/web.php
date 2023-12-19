@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\RolesController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,15 @@ Route::group(['middleware'=>'auth'], function(){
         Route::get('edit/{id}', [RolesController::class, 'edit'])->name('edit-roles');
         Route::post('update/{id}', [RolesController::class, 'update'])->name('update-roles');
         Route::get('delete/{id}', [RolesController::class, 'delete'])->name('delete-roles');
+    });
+
+    Route::prefix('users')->group(function () {
+        Route::get('create', [UserController::class, 'create'])->name('create-user');
+        Route::post('store', [UserController::class, 'store'])->name('store-user');
+        Route::get('list', [UserController::class, 'list'])->name('list-user');
+        Route::get('edit/{id}', [UserController::class, 'edit'])->name('edit-user');
+        Route::post('update/{id}', [UserController::class, 'update'])->name('update-user');
+        Route::get('delete/{id}', [UserController::class, 'delete'])->name('delete-user');
     });
 });
 

@@ -7,6 +7,8 @@ use App\Repositories\Interfaces\Auth\AuthRepositoryInterface;
 use App\Repositories\Repository\Auth\AuthRepository;
 use App\Repositories\Interfaces\RolesRepositoryInterface;
 use App\Repositories\Repository\RolesRepository;
+use App\Repositories\Interfaces\UserRepositoryInterface;
+use App\Repositories\Repository\UserRepository;
 
 class InterfaceBindingServiceProvider extends ServiceProvider
 {
@@ -14,6 +16,7 @@ class InterfaceBindingServiceProvider extends ServiceProvider
     const BINDINGS = [
         AuthRepositoryInterface::class => AuthRepository::class,
         RolesRepositoryInterface::class => RolesRepository::class,
+        UserRepositoryInterface::class => UserRepository::class,
     ];
 
     /**
